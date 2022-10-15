@@ -3,11 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 // 1. 引入你需要的组件
-import { Tabbar, TabbarItem } from "vant";
+import { Search, Swipe, SwipeItem  } from "vant";
 // 2. 引入组件样式
 import "vant/lib/index.css";
 Vue.config.productionTip = false;
-Vue.use(Tabbar, TabbarItem);
+Vue.use(Search);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
 new Vue({
   router,
   store,

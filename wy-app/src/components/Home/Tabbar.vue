@@ -42,7 +42,7 @@ export default {
   },
 };
 </script>
-<style lang="less">
+<style lang="less" scoped>
 * {
   margin: 0;
   padding: 0;
@@ -62,6 +62,7 @@ export default {
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    font-weight: 500;
      img {
       width: 30px;
       height: 30px;
