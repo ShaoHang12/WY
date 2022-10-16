@@ -11,8 +11,8 @@
         class="my-swpie"
         :show-indicators="false"
       >
-        <van-swipe-item v-for="item in musicList" :key="item">
-          <router-link :to="{ path: '/itemMusic', query: { id: item.id } }">
+        <van-swipe-item v-for="(item, index) in musicList" :key="index">
+          <router-link :to="{ path: '/itemmusic', query: { id: item.id } }">
             <img :src="item.picUrl" alt="" />
             <span class="playCount">
               <svg class="icon" aria-hidden="true">
@@ -38,7 +38,6 @@ export default {
   methods: {
     async getGnedan() {
       let res = await getMusicList();
-      console.log(res);
       this.musicList = res.data.result;
     },
     changeCount: function (num) {

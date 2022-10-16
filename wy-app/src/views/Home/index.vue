@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Topnav/>
-    <Swiper/>
-    <IconList/>
-    <MusicList/>
+    <Topnav />
+    <Swiper />
+    <IconList />
+    <MusicList />
   </div>
 </template>
 

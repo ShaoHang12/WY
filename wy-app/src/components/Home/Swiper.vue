@@ -22,7 +22,7 @@ export default {
   methods: {
     async getBanner() {
       let result = await reqGetBanner();
-      this.imgs = result.data.banners;
+      if (result.status == 200) this.imgs = result.data.banners;
     },
   },
 };
@@ -34,7 +34,7 @@ export default {
     width: 100%;
     height: 3rem;
     .van-swipe-item {
-    //   padding: 0 0.2rem;
+      //   padding: 0 0.2rem;
       img {
         width: 100%;
         height: 100%;

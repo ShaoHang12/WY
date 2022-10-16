@@ -6,7 +6,7 @@ const routes = [
   {
     path: "/home",
     name: "home",
-    component: () => import("@/views/Home.vue"),
+    component: () => import("@/views/Home"),
     meta: {
       showTab: true,
     },
@@ -20,6 +20,12 @@ const routes = [
     },
   },
   {
+    path: "/itemmusic",
+    name: "itemmusic",
+    component: () => import("@/views/Home/ItemMusic"),
+  },
+  {
+    //重定向，在项目跑起来，访问/立马定向到首页
     path: "/",
     redirect: "/home",
   },

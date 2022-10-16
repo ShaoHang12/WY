@@ -48,7 +48,7 @@ export default {
   padding: 0;
   .tab {
     width: 100%;
-    height: 10vh;
+    height: 8vh;
     display: flex;
     border-top: 1px solid #ccc;
     position: fixed;

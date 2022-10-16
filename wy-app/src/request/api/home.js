@@ -1,4 +1,4 @@
-import service from "..";
+import service from "@/request";
 // 获取首页轮播图的数据
 export const reqGetBanner = () => {
   return service({
