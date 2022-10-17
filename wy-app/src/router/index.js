@@ -22,7 +22,7 @@ const routes = [
   {
     path: "/itemmusic",
     name: "itemmusic",
-    component: () => import("@/views/Home/ItemMusic"),
+    component: () => import("@/views/ItemMusic"),
   },
   {
     //重定向，在项目跑起来，访问/立马定向到首页

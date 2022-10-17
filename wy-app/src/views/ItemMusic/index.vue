@@ -1,16 +1,21 @@
 <template>
   <div>
     <ItemMusicTop :playlist="playlist" />
-    <ItemMusicList :itemList="itemList" :subscribedCount="playlist.subscribedCount "/>
+    <ItemMusicList
+      :itemList="itemList"
+      :subscribedCount="playlist.subscribedCount"
+    />
+    <FootMusic style="margin: 0; height: 1rem" />
   </div>
 </template>
 
 <script>
 import { getMusicItemList, getItemList } from "@/request/api/item.js";
 import ItemMusicTop from "@/components/Item/ItemMusicTop.vue";
-import ItemMusicList from "../../../components/Item/ItemMusicList.vue";
+import ItemMusicList from "@/components/Item/ItemMusicList.vue";
+import FootMusic from "@/components/Item/FootMusic.vue";
 export default {
-  components: { ItemMusicTop, ItemMusicList },
+  components: { ItemMusicTop, ItemMusicList, FootMusic },
   data() {
     return {
       playlist: {}, //歌单的详情页的数据
@@ -32,8 +37,13 @@ export default {
   },
   mounted() {
     this.getUseRote();
+    this.$store.state.isFooterMusic = false;
   },
 };
 </script>
 
-<style></style>
+<style>
+FootMusic {
+  margin: 0 !important;
+}
+</style>

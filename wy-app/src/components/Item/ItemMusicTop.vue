@@ -137,7 +137,7 @@ export default {
   }
 }
 .itemTopContent {
-  width: 100%;
+  width: 94%;
   height: 3rem;
   padding: 0.2rem;
   margin-top: 0.4rem;

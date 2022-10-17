@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <tabbar v-if="$route.meta.showTab"></tabbar>
+    <tabbar v-if="$store.state.isFooterMusic"/>
   </div>
 </template>
 
 <script>
 import Tabbar from "./components/Home/Tabbar.vue";
+import FootMusic from "./components/Item/FootMusic.vue";
 export default {
   name: "app",
   created: function () {
@@ -14,6 +15,14 @@ export default {
   },
   components: {
     Tabbar,
+    FootMusic,
   },
 };
 </script>
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+</style>

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import { getMusicLyric } from "@/request/api/item";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -22,10 +22,10 @@ export default new Vuex.Store({
         ar: [{ name: "柳爽" }],
       },
     ],
-
-    playListIndex: 0,
+    isShowTab:true,//是否展示tabbar
+    playListIndex: 0,//默认下标为0
     isbtnShow: true, //播放按钮
-    detailShow: false,
+    detailShow: false,//歌曲详情页的显示
     lyricList: {}, //歌词
     currentTime: 0, //当前时间
     duration: 0, //歌曲总时间
@@ -36,13 +36,41 @@ export default new Vuex.Store({
   },
   getters: {},
   mutations: {
-    updatePlayList: function (state, value) {
+    updateIsbtnShow: function (state, value) {
+      state.isbtnShow = value;
+    },
+    updatePlayList(state, value) {
       state.playList = value;
     },
-    updatePlayListIndex: function (state, value) {
+    updatePlayListIndex(state, value) {
       state.playListIndex = value;
     },
+    updatePlayListIndex(state, value) {
+      state.playListIndex = value;
+    },
+    updateDetailShow(state) {
+      state.detailShow = !state.detailShow;
+    },
+    updateLyricList(state, value) {
+      state.lyricList = value;
+    },
+    updateCurrentTime(state, value) {
+      console.log(state.currentTime);
+      state.currentTime = value;
+    },
+    updateDuration(state, value) {
+      state.duration = value;
+    },
+    //将搜索点击的音乐插入到数组的最后
+    pushPlayList(state, value) {
+      state.playList.push(value);
+    },
   },
-  actions: {},
+  actions: {
+    async getLyric(context, value) {
+      let res = await getMusicLyric(value);
+      context.commit("updateLyricList", res.data.lrc);
+    },
+  },
   modules: {},
 });

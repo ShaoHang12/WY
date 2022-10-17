@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     switchToTab(path) {
-      console.log(path);
       this.$router.replace(path);
     },
   },

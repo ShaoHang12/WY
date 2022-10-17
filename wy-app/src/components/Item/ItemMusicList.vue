@@ -44,7 +44,7 @@ import { mapMutations } from "vuex";
 export default {
   props: ["itemList", "subscribedCount"],
   methods: {
-    playMusic: function (i) {
+    playMusic (i) {
       this.updatePlayList(this.itemList);
       this.updatePlayListIndex(i);
     },
