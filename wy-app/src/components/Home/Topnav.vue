@@ -6,7 +6,7 @@
       </svg>
     </div>
     <div class="topContent">
-      <van-search placeholder="Placeholder" />
+      <van-search placeholder="Placeholder"  @click="$router.push('/search')"/>
     </div>
   </div>
 </template>

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { reqGetBanner } from "@/request/api/home.js";
+import { getBanner } from "@/request/api/home.js";
 export default {
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     async getBanner() {
-      let result = await reqGetBanner();
+      let result = await getBanner();
       if (result.status == 200) this.imgs = result.data.banners;
     },
   },

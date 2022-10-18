@@ -162,7 +162,7 @@ export default {
     backHome() {
       this.isLyricListShow = false;
       this.updateDetailShow();
-      this.$store.state.isFooterMusic = true;
+      this.$store.state.isShowTab = true;
     },
     goPlay(num) {
       let index = this.playListIndex + num;
@@ -195,7 +195,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.state.isFooterMusic = false;
+    this.$store.state.isShowTab= false;
     this.addDuration();
     this.lang();
   },

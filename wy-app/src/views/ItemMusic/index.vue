@@ -37,7 +37,7 @@ export default {
   },
   mounted() {
     this.getUseRote();
-    this.$store.state.isFooterMusic = false;
+    this.$store.state.isShowTab = false;
   },
 };
 </script>

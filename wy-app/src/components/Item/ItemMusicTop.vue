@@ -3,7 +3,7 @@
     <div class="itemMusicTop">
       <img :src="playlist.coverImgUrl" alt="" class="bgimg" />
       <div class="itemLeft">
-        <svg class="icon" aria-hidden="true" @click="$router.go(-1)">
+        <svg class="icon" aria-hidden="true" @click="goBack">
           <use xlink:href="#icon-zuojiantou"></use>
         </svg>
         <span>歌单</span>
@@ -94,9 +94,13 @@ export default {
         ).creator;
       }
     },
+    goBack() {
+      this.$router.go(-1);
+      this.$store.state.isShowTab = true;
+    },
   },
   mounted() {
-    this.getData()
+    this.getData();
   },
 };
 </script>

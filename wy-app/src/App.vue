@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <tabbar v-if="$store.state.isFooterMusic"/>
+    <tabbar v-if="$store.state.isShowTab"/>
   </div>
 </template>
 

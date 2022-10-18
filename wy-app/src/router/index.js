@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/my",
     name: "my",
-    component: () => import("@/views/My.vue"),
+    component: () => import("@/views/My"),
     meta: {
       showTab: true,
     },
@@ -23,6 +23,11 @@ const routes = [
     path: "/itemmusic",
     name: "itemmusic",
     component: () => import("@/views/ItemMusic"),
+  },
+  {
+    path: "/search",
+    name: "search",
+    component: () => import("@/views/Search"),
   },
   {
     //重定向，在项目跑起来，访问/立马定向到首页
