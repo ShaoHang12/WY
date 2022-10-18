@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { getMusicLyric } from "@/request/api/item";
+import {getPhoneLogin} from "@/request/api/home.js"
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -22,10 +23,10 @@ export default new Vuex.Store({
         ar: [{ name: "柳爽" }],
       },
     ],
-    isShowTab:true,//是否展示tabbar
-    playListIndex: 0,//默认下标为0
+    isShowTab: true, //是否展示tabbar
+    playListIndex: 0, //默认下标为0
     isbtnShow: true, //播放按钮
-    detailShow: false,//歌曲详情页的显示
+    detailShow: false, //歌曲详情页的显示
     lyricList: {}, //歌词
     currentTime: 0, //当前时间
     duration: 0, //歌曲总时间
@@ -36,7 +37,7 @@ export default new Vuex.Store({
   },
   getters: {},
   mutations: {
-    updateIsbtnShow: function (state, value) {
+    updateIsbtnShow(state, value) {
       state.isbtnShow = value;
     },
     updatePlayList(state, value) {
@@ -65,11 +66,25 @@ export default new Vuex.Store({
     pushPlayList(state, value) {
       state.playList.push(value);
     },
+    updateIsLogin(state, value) {
+      state.isLogin = true;
+    },
+    updateToken(state, value) {
+      state.token = value;
+      localStorage.setItem("token", state.token);
+    },
+    updateUser(state, value) {
+      state.user = value;
+    },
   },
   actions: {
     async getLyric(context, value) {
       let res = await getMusicLyric(value);
-      context.commit("updateLyricList", res.data.lrc);
+      if (res.status == 200) context.commit("updateLyricList", res.data.lrc);
+    },
+    getLogin: async function (context, value) {
+      let res = await getPhoneLogin(value);
+      if (res.status == 200) return res;
     },
   },
   modules: {},

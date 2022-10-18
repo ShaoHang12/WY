@@ -20,3 +20,17 @@ export const getSearchMusic = (data) => {
     url: `/api/search?keywords=${data}`,
   });
 };
+//获取用户详情
+export const getLoginUser = (data) => {
+  return service({
+    method: "GET",
+    url: `/api/user/detail?uid=${data}`,
+  });
+};
+//登录
+export const getPhoneLogin = (data) => {
+  return service({
+    method: "GET",
+    url: `/api/login/cellphone?phone=${data.phone}&password=${data.password}`,
+  });
+};

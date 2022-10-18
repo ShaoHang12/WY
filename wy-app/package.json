@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^1.1.2",
+    "babel-plugin-import": "^1.13.5",
     "nprogress": "^0.2.0",
     "vant": "^2.12.50",
     "vue": "^2.6.14",
