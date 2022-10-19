@@ -56,7 +56,6 @@ export default new Vuex.Store({
       state.lyricList = value;
     },
     updateCurrentTime(state, value) {
-      console.log(state.currentTime);
       state.currentTime = value;
     },
     updateDuration(state, value) {

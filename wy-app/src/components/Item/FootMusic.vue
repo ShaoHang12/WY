@@ -1,6 +1,6 @@
 <template>
   <div class="FootMusic">
-    <div class="footLeft" @click="updateDetailShow">
+    <div class="footLeft" @click="update()">
       <img :src="playList[playListIndex].al.picUrl" />
       <div>
         <p>{{ playList[playListIndex].name }}</p>
@@ -37,6 +37,8 @@
         :play="play"
         :isbtnShow="isbtnShow"
         :addDuration="addDuration"
+        :updateTime="updateTime"
+        :audio="$refs.audio"
       />
     </van-popup>
   </div>
@@ -81,9 +83,14 @@ export default {
       "updateCurrentTime",
       "updateDuration",
     ]),
+    //添加总时长
     addDuration() {
       this.updateDuration(this.$refs.audio.duration);
     },
+    update(){
+      this.updateDetailShow();
+      this.$store.state.isShowTab = false
+    }
   },
 
   watch: {

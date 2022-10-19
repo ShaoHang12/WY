@@ -71,14 +71,13 @@
         </svg>
       </div>
       <div class="footerContent">
-        <input
-          type="range"
-          class="range"
-          min="0"
-          :max="duration"
-          v-model="currentTime"
-          step="0.05"
-        />
+        <div class="progress-bar-wrapper">
+          <Progress
+            :percent="percent"
+            v-model:src="changeCurrentTime"
+            @percentChange="onProgressBarChange"
+          />
+        </div>
       </div>
       <div class="footer">
         <svg class="icon" aria-hidden="true">
@@ -111,12 +110,20 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
+import Progress from "./Progress.vue";
 export default {
-  props: ["musicList", "isbtnShow", "play", "addDuration"],
+  props: [
+    "musicList",
+    "isbtnShow",
+    "play",
+    "addDuration",
+    "updateTime",
+    "audio",
+  ],
   data() {
     return {
       msg: this.musicList.al.name,
-      flag: null, //根据该主键清除定时器
+      flag: null,
       isLyricListShow: false,
     };
   },
@@ -156,13 +163,32 @@ export default {
       }
       return arr;
     },
+    percent() {
+      console.log();
+      return this.currentTime / this.duration;
+    },
+    changeCurrentTime: {
+      get() {
+        console.log("this.currentTime", this.currentTime);
+        return this.currentTime;
+      },
+      set(value) {
+        console.log("changeCurrentTime", value);
+        this.audio.currentTime = value;
+        // this.updateCurrentTime((value*1))
+      },
+    },
   },
   methods: {
-    ...mapMutations(["updateDetailShow"]),
+    ...mapMutations([
+      "updateDetailShow",
+      "updatePlayListIndex",
+      "updateCurrentTime",
+    ]),
     backHome() {
       this.isLyricListShow = false;
       this.updateDetailShow();
-      this.$store.state.isShowTab = true;
+      if (this.$route.path == "/home") this.$store.state.isShowTab = true;
     },
     goPlay(num) {
       let index = this.playListIndex + num;
@@ -173,7 +199,6 @@ export default {
       }
       this.updatePlayListIndex(index);
     },
-    ...mapMutations(["updatePlayListIndex"]),
     //跑马灯
     lang() {
       if (this.flag != null) return; //当第一次执行过后，this.flag存在值 就会退出！！！
@@ -183,22 +208,37 @@ export default {
         this.msg = end + start;
       }, 1000);
     },
+    //在player监听这个percentChange事件，定义这个事件方法:要改变audio的currentTime才能真正改变播放器的进度条，这个currentTime是可读写属性
+    onProgressBarChange(percent) {
+      // this.currentTime = this.duration * percent;
+      // this.updateCurrentTime(this.duration * percent)
+      this.changeCurrentTime = this.duration * percent;
+    },
   },
   watch: {
-    currentTime() {
+    currentTime(newValue) {
       let p = document.querySelector("p.active");
       if (p) {
         if (p.offsetTop > 300) {
           this.$refs.musicLyric.scrollTop = p.offsetTop - 300;
         }
       }
+      if (newValue === this.duration) {
+        if (this.playListIndex === this.playList.length - 1) {
+          this.updatePlayListIndex(0);
+          this.play();
+        } else {
+          this.updatePlayListIndex(this.playListIndex + 1);
+        }
+      }
     },
   },
   mounted() {
-    this.$store.state.isShowTab= false;
+    this.updateTime();
     this.addDuration();
     this.lang();
   },
+  components: { Progress },
 };
 </script>
 
@@ -320,12 +360,23 @@ export default {
       height: 0.6rem;
     }
   }
-  .range {
-    width: 100%;
-    height: 0.06rem;
-    background-color: white;
-    progress::-webkit-progress-value {
-      background: black;
+  .footerContent {
+    /* 自定义进度条样式 */
+    /* 自定义进度条样式 */
+    input[type="range"] {
+    }
+    /*拖动块的样式*/
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; /*清除系统默认样式*/
+      height: 0.3rem; /*拖动块高度*/
+      width: 0.3rem; /*拖动块宽度*/
+      background: white; /*拖动块背景*/
+      border-radius: 50%; /*外观设置为圆形*/
+      border: solid 1px #ddd; /*设置边框*/
+    }
+    .range {
+      width: 100%;
+      height: 0.06rem;
     }
   }
 
