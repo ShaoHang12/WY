@@ -37,6 +37,11 @@ const routes = [
     component: () => import("@/views/Login"),
   },
   {
+    path: "/comment",
+    name: "comment",
+    component: () => import("@/views/Comment"),
+  },
+  {
     //重定向，在项目跑起来，访问/立马定向到首页
     path: "/",
     redirect: "/home",

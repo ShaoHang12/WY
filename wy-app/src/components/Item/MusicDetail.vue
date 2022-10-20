@@ -63,9 +63,10 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-yinlechangpian"></use>
         </svg>
+        <router-link  :to="{path:'/comment' ,query:{id:musicList.id}}">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-iconfontzhizuobiaozhun023110"></use>
-        </svg>
+        </svg></router-link>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-liebiao-"></use>
         </svg>
