@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { getMusicLyric } from "@/request/api/item";
-import {getPhoneLogin} from "@/request/api/home.js"
+import {getPhoneLogin} from "@/request/api/my"
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -42,9 +42,6 @@ export default new Vuex.Store({
     },
     updatePlayList(state, value) {
       state.playList = value;
-    },
-    updatePlayListIndex(state, value) {
-      state.playListIndex = value;
     },
     updatePlayListIndex(state, value) {
       state.playListIndex = value;

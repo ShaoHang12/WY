@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Tabbar from "./components/Home/Tabbar.vue";
+import Tabbar from "./components/Currency/Tabbar.vue";
 import FootMusic from "./components/Item/FootMusic.vue";
 export default {
   name: "app",

@@ -18,6 +18,7 @@ export default {
   components: { Topnav, Swiper, IconList, MusicList, FootMusic },
   mounted(){
     this.$store.state.isFooterMusic = true;
+    this.$store.state.isShowTab = true;
   }
 };
 </script>

@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-import { getLoginUser } from "@/request/api/home";
+import { getLoginUser } from "@/request/api/my";
 export default {
   data() {
     return {
@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     async Login() {
-      console.log(this.phone, this.password);
       let res = await this.$store.dispatch("getLogin", {
         phone: this.phone,
         password: this.password,
@@ -48,7 +47,6 @@ export default {
         this.$store.commit("updateIsLogin", true);
         this.$store.commit("updateToken", res.data.token);
         let result = await getLoginUser(res.data.account.id);
-        console.log(result);
         this.$store.commit("updateUser", result);
         this.$router.push("/my");
       } else {
@@ -57,7 +55,6 @@ export default {
       }
     },
     onSubmit(values) {
-      console.log("submit", values);
     },
   },
 };
