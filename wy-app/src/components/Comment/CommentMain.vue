@@ -55,7 +55,7 @@ export default {
         limit: 20,
         offest: (this.page - 1) * 20,
       });
-      if (result.status == 200) {
+      if (result.data.code == 200) {
         //拼接字符串
         result.data.comments.forEach((item) => {
           this.commentList.push(item);

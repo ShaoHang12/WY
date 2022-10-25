@@ -8,7 +8,7 @@ function remSize() {
   if (phoneWidth < 320) {
     deviceWidth = 320;
   }
-  document.documentElement.style.fontSize = phoneWidth / 7.5 + "px";
+  document.documentElement.style.fontSize = phoneWidth / 7.3 + "px";
   //字体大小
   document.querySelector("body").style.fontSize = 0.3 + "rem";
 }

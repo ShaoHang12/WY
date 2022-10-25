@@ -22,7 +22,7 @@ export default {
   methods: {
     async getBanner() {
       let result = await getBanner();
-      if (result.status == 200) this.imgs = result.data.banners;
+      if (result.data.code == 200) this.imgs = result.data.banners;
     },
   },
 };

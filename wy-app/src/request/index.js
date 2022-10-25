@@ -7,7 +7,6 @@ let service = axios.create({
   baseUrl: "http://localhost:3000/",
   timeout: 3000,
 });
-console.log(service);
 // //请求拦截器
 service.interceptors.request.use((config) => {
   nprogress.start();

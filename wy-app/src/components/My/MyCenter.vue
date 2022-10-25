@@ -202,19 +202,41 @@
       </div>
     </div>
     <div class="infoUserFoot">
-      <MyMusicList/>
+      <MyMusicList />
+      <van-button class="loginOut" @click="loginOut" block>退出登录</van-button>
     </div>
   </div>
 </template>
 
 <script>
+import { getLoginOut } from "@/request/api/my";
 import { mapState } from "vuex";
 import MyMusicList from "./MyMusicList.vue";
 export default {
-    computed: {
-        ...mapState(["user"]),
+  computed: {
+    ...mapState(["user"]),
+  },
+  components: { MyMusicList },
+  methods: {
+    async loginOut() {
+      let result = await getLoginOut();
+      if (result.data.code) {
+        this.$dialog
+          .confirm({
+            //title:'标题',
+            message: "是否退出登录",
+          })
+          .then(() => {
+            console.log("确认");
+            this.$router.push("/login");
+          })
+          .catch(() => {
+            console.log("取消");
+          });
+       
+      }
     },
-    components: { MyMusicList }
+  },
 };
 </script>
 
@@ -274,6 +296,9 @@ export default {
       margin-top: 0.6rem;
       font-size: 0.4rem;
       font-weight: 700;
+    }
+    .loginOut {
+      margin-top: -100px;
     }
   }
 }

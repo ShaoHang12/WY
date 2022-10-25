@@ -4,7 +4,7 @@
     <van-cell class="like" v-for="(item, index) in playList" :key="index">
       <img :src="item.coverImgUrl" alt="" />
       <p class="title">{{ item.name }}</p>
-      <p class="count">{{ item.playCount }}首</p>
+      <p class="count">{{ item.trackCount }}首</p>
     </van-cell>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
     ...mapMutations(["updatePlayListIndex"]),
     async reqGetPlayList() {
       let result = await getPlayList(this.user.data.profile.userId);
-      if (result.status == 200) {
+      if (result.data.code == 200) {
         console.log(result);
         this.playList = result.data.playlist;
       }

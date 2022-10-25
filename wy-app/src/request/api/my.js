@@ -13,6 +13,13 @@ export const getLoginUser = (data) => {
       url: `/api/login/cellphone?phone=${data.phone}&password=${data.password}`,
     });
   };
+  //退出登录
+  export const getLoginOut = () => {
+    return service({
+      method: "GET",
+      url: `/api/logout`,
+    });
+  };
   //获取用户歌单
   export const getPlayList = (data) => {
     return service({

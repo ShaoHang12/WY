@@ -10,7 +10,7 @@ import Tabbar from "./components/Currency/Tabbar.vue";
 import FootMusic from "./components/Item/FootMusic.vue";
 export default {
   name: "app",
-  created: function () {
+  created() {
     this.$router.push("/");
   },
   components: {

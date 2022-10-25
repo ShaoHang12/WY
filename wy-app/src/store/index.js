@@ -78,7 +78,7 @@ export default new Vuex.Store({
       let res = await getMusicLyric(value);
       if (res.status == 200) context.commit("updateLyricList", res.data.lrc);
     },
-    getLogin: async function (context, value) {
+    async   getLogin(context, value) {
       let res = await getPhoneLogin(value);
       if (res.status == 200) return res;
     },
