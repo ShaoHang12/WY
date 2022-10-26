@@ -23,7 +23,7 @@ export default new Vuex.Store({
         ar: [{ name: "柳爽" }],
       },
     ],
-    isShowTab: true, //是否展示tabbar
+    isShowTab: false, //是否展示tabbar
     playListIndex: 0, //默认下标为0
     isbtnShow: true, //播放按钮
     detailShow: false, //歌曲详情页的显示

@@ -170,11 +170,9 @@ export default {
     },
     changeCurrentTime: {
       get() {
-        console.log("this.currentTime", this.currentTime);
         return this.currentTime;
       },
       set(value) {
-        console.log("changeCurrentTime", value);
         this.audio.currentTime = value;
         // this.updateCurrentTime((value*1))
       },
@@ -189,7 +187,7 @@ export default {
     backHome() {
       this.isLyricListShow = false;
       this.updateDetailShow();
-      if (this.$route.path == "/home") this.$store.state.isShowTab = true;
+      if(this.$route.path == '/home') this.$store.state.isShowTab = true;
     },
     goPlay(num) {
       let index = this.playListIndex + num;
@@ -233,12 +231,16 @@ export default {
         }
       }
     },
+    "$router"(){
+      this.$store.state.isShowTab = false
+    }
   },
   mounted() {
     this.updateTime();
     this.addDuration();
-    this.lang();
+    this.lang();    
   },
+  
   components: { Progress },
 };
 </script>

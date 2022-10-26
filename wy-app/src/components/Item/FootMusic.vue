@@ -4,7 +4,6 @@
       <img :src="playList[playListIndex].al.picUrl" />
       <div>
         <p>{{ playList[playListIndex].name }}</p>
-        <span>横滑切换</span>
       </div>
     </div>
     <div class="footRight">
@@ -87,10 +86,10 @@ export default {
     addDuration() {
       this.updateDuration(this.$refs.audio.duration);
     },
-    update(){
+    update() {
       this.updateDetailShow();
-      this.$store.state.isShowTab = false
-    }
+      this.$store.state.isShowTab = false;
+    },
   },
 
   watch: {
@@ -136,10 +135,8 @@ export default {
     p {
       width: 100%;
       height: 0.4rem;
-      margin-left:9px ;
-    }
-    span {
-      margin: 10px;
+      margin-left: 0.18rem;
+      margin-top: 0.2rem;
     }
     img {
       width: 1rem;

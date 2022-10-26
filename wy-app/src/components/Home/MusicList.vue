@@ -50,13 +50,14 @@ export default {
   },
   mounted() {
     this.getGnedan();
+    this.$store.state.isShowTab = false
   },
 };
 </script>
 <style lang="less" scoped>
 .musicList {
   width: 95%;
-  height: 5rem;
+  height: 8rem;
   padding: 0.2rem;
   .musicTop {
     width: 100%;

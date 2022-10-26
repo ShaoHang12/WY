@@ -4,7 +4,7 @@
     <Swiper />
     <IconList />
     <MusicList />
-    <FootMusic/>
+    <FootMusic />
   </div>
 </template>
 
@@ -16,9 +16,15 @@ import MusicList from "@/components/Home/MusicList.vue";
 import FootMusic from "@/components/Item/FootMusic.vue";
 export default {
   components: { Topnav, Swiper, IconList, MusicList, FootMusic },
-  mounted(){
+  mounted() {
     this.$store.state.isFooterMusic = true;
-    this.$store.state.isShowTab = true;
+    const key = 'commentBack'
+    if (localStorage.getItem(key) === '1') {
+      this.$store.state.isShowTab = false;
+      localStorage.removeItem(key);
+    } else {
+      this.$store.state.isShowTab = true;
+    }
   }
 };
 </script>
