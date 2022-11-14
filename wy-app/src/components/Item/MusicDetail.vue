@@ -8,8 +8,10 @@
           <use xlink:href="#icon-zuojiantou"></use>
         </svg>
         <div class="leftDetail">
+          <!-- 走马灯 -->
           <span style="color: #fff" @click="lang">{{ this.msg }}</span
           ><br />
+          <!-- 作者 -->
           <span v-for="(authors, index) in musicList.ar" :key="index">{{
             authors.name
           }}</span>
@@ -24,6 +26,7 @@
         </svg>
       </div>
     </div>
+    <!-- 动画磁盘磁针部分 -->
     <div class="detailContent" v-show="!isLyricListShow">
       <img
         src="@/assets/Music/needle-ab.png"
@@ -38,6 +41,7 @@
         @click="isLyricListShow = true"
       />
     </div>
+    <!-- 歌词部分 -->
     <div class="musicLyric" ref="musicLyric" v-show="isLyricListShow">
       <p
         v-for="(sentence, index) in lyric"
@@ -52,6 +56,7 @@
         {{ sentence.lrc }}
       </p>
     </div>
+    <!-- 底部icon -->
     <div class="detailFooter">
       <div class="footerTop">
         <svg class="icon" aria-hidden="true">
@@ -63,16 +68,19 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-yinlechangpian"></use>
         </svg>
-        <router-link  :to="{path:'/comment' ,query:{id:musicList.id}}">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-iconfontzhizuobiaozhun023110"></use>
-        </svg></router-link>
+        <!-- 跳转到评论页 -->
+        <router-link :to="{ path: '/comment', query: { id: musicList.id } }">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-iconfontzhizuobiaozhun023110"></use>
+          </svg>
+        </router-link>
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-liebiao-"></use>
         </svg>
       </div>
       <div class="footerContent">
-        <div class="progress-bar-wrapper">
+        <!-- 进度条 -->
+        <div class="progress">
           <Progress
             :percent="percent"
             v-model:src="changeCurrentTime"
@@ -138,14 +146,20 @@ export default {
     ]),
     lyric() {
       let arr;
+      // 等到数组拿到之后再对歌词进行判断
       if (this.lyricList.lyric) {
+        // 对字符串进行切割 [(\r\n)\r\n]为换行符
         arr = this.lyricList.lyric.split(/[(\r\n)\r\n]+/).map((item, i) => {
-          let min = item.slice(1, 3);
+          //对数组元素进行切割
+          let min = item.slice(1, 3);//从1切到2
           let sec = item.slice(4, 6);
           let mil = item.slice(7, 10);
+          //歌词部分
           let lrc = item.slice(11, item.length);
+          // 计算毫秒
           let time =
             parseInt(min) * 60 * 1000 + parseInt(sec) * 1000 + parseInt(mil);
+            // 如果毫秒的最后一位为NAN则重新切割
           if (isNaN(Number(mil))) {
             mil = item.slice(7, 9);
             lrc = item.slice(10, item.length);
@@ -165,7 +179,6 @@ export default {
       return arr;
     },
     percent() {
-      console.log();
       return this.currentTime / this.duration;
     },
     changeCurrentTime: {
@@ -173,7 +186,9 @@ export default {
         return this.currentTime;
       },
       set(value) {
-        this.audio.currentTime = value;
+        if(value) {
+          this.audio.currentTime = Math.floor(value);
+        }
         // this.updateCurrentTime((value*1))
       },
     },
@@ -187,7 +202,7 @@ export default {
     backHome() {
       this.isLyricListShow = false;
       this.updateDetailShow();
-      if(this.$route.path == '/home') this.$store.state.isShowTab = true;
+      if (this.$route.path == "/home") this.$store.state.isShowTab = true;
     },
     goPlay(num) {
       let index = this.playListIndex + num;
@@ -197,6 +212,7 @@ export default {
         index = 0;
       }
       this.updatePlayListIndex(index);
+      // this.play()
     },
     //跑马灯
     lang() {
@@ -231,16 +247,16 @@ export default {
         }
       }
     },
-    "$router"(){
-      this.$store.state.isShowTab = false
-    }
+    $router() {
+      this.$store.state.isShowTab = false;
+    },
   },
   mounted() {
     this.updateTime();
     this.addDuration();
-    this.lang();    
+    this.lang();
   },
-  
+
   components: { Progress },
 };
 </script>

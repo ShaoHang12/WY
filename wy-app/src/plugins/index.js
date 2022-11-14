@@ -10,6 +10,8 @@ import {
   PullRefresh,
   List,
   Cell,
+  Col,
+  Row,
   Dialog,
 } from "vant";
 import "vant/lib/index.css";
@@ -25,6 +27,8 @@ let plugins = [
   PullRefresh,
   List,
   Cell,
+  Col,
+  Row,
   Dialog,
 ];
 export default function getVant(app) {

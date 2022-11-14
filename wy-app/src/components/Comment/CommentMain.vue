@@ -96,9 +96,7 @@ export default {
       if (result.data.code == 200) {
         console.log(result);
         //拼接字符串
-        result.data.comments.forEach((item) => {
-          this.commentList.push(item);
-        });
+        result.data.comments.forEach((item) => this.commentList.push(item));
         this.isLoading = false;
         this.loading = false;
       }
@@ -106,6 +104,7 @@ export default {
     async onRefresh() {
       //重新获取数据
       this.commentList = [];
+      this.page = 1;
       this.reqGetComment();
     },
     async onLoad() {

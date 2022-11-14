@@ -46,11 +46,14 @@
         </div>
       </div>
     </div>
+    <foot-music style="margin: 0; height: 1rem" ></foot-music>
   </div>
 </template>
 <script>
 import { getSearchMusic } from "@/request/api/home";
+import FootMusic from '../../components/Item/FootMusic.vue';
 export default {
+  components: { FootMusic },
   data() {
     return {
       keyWorldList: [],
@@ -89,6 +92,7 @@ export default {
     },
     async searchHistory(item) {
       let res = await getSearchMusic(item);
+      console.log(res);
       if (res.status == 200) this.searchList = res.data.result.songs;
     },
     updateIndex(item) {
@@ -195,6 +199,8 @@ export default {
         align-items: center;
         position: relative;
         .icon {
+          width: 0.3rem;
+          height: 0.3rem;
           fill: #999;
         }
         .bofang {

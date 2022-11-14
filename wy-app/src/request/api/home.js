@@ -6,7 +6,7 @@ export const getBanner = () => {
     url: "/api/banner?type=2",
   });
 };
-//获取发现好歌单
+//获取歌单
 export const getMusicList = () => {
   return service({
     method: "GET",

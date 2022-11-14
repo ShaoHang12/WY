@@ -29,7 +29,7 @@ export default {
       let res = await getMusicItemList(id);
       if (res.status == 200) this.playlist = res.data.playlist;
       //   获取歌单的歌曲
-      let result = await getItemList({ id, limit: 10, offset: 0 });
+      let result = await getItemList({ id, limit: 30, offset: 0 });
       if (result.status == 200) this.itemList = result.data.songs;
       //   防止页面刷新，数据丢失，将数据保存到sessionStorage中
       sessionStorage.setItem("itemDetail", JSON.stringify(this.playlist));

@@ -1,7 +1,7 @@
 <template>
   <div class="myList">
     <span>我的歌单</span>
-    <van-cell class="like" v-for="(item, index) in playList" :key="index">
+    <van-cell class="like" v-for="(item, index) in playList" :key="index" @click="goItemMusic(item.id)">
       <img :src="item.coverImgUrl" alt="" />
       <p class="title">{{ item.name }}</p>
       <p class="count">{{ item.trackCount }}首</p>
@@ -43,6 +43,9 @@ export default {
         this.playList = result.data.playlist;
       }
     },
+    goItemMusic(id){
+      this.$router.push({path:'/itemmusic', query: { id: id }})
+    }
   },
 };
 </script>

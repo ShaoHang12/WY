@@ -25,6 +25,7 @@
     <audio
       ref="audio"
       :src="`https://music.163.com/song/media/outer/url?id=${playList[playListIndex].id}.mp3`"
+      @canplay="canplay"
     ></audio>
     <van-popup
       v-model:show="detailShow"
@@ -53,12 +54,17 @@ export default {
     };
   },
   computed: {
-    ...mapState(["playList", "playListIndex", "isbtnShow", "detailShow"]),
+    ...mapState(["playList", "playListIndex", "isbtnShow", "detailShow", "duration"]),
   },
   mounted() {
     this.$store.dispatch("getLyric", this.playList[this.playListIndex].id);
   },
   methods: {
+    canplay() {
+      if(!this.duration) {
+        this.addDuration();
+      }
+    },
     play() {
       //判断音乐是否播放
       if (this.$refs.audio.paused) {
@@ -71,8 +77,9 @@ export default {
         clearInterval(this.interVal); //清除
       }
     },
+    //将this.$refs.audio.currentTime传给vuex中的currenttime 函数需要一直触发
     updateTime() {
-      this.interVal = setInterval(() => {
+      this.interVal = setInterval(() => { 
         this.updateCurrentTime(this.$refs.audio.currentTime);
       }, 1000);
     },
@@ -91,7 +98,6 @@ export default {
       this.$store.state.isShowTab = false;
     },
   },
-
   watch: {
     playListIndex() {
       this.$refs.audio.autoplay = true;
@@ -126,7 +132,6 @@ export default {
   bottom: 0;
   border-top: 0.02rem solid #999;
   background-color: white;
-
   .footLeft {
     width: 55%;
     height: 100%;

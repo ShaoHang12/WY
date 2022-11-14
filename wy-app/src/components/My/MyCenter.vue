@@ -228,12 +228,13 @@ export default {
           })
           .then(() => {
             console.log("确认");
-            this.$router.push("/login");
+            this.$router.push("/home");
+            this.$store.state.isLogin = false;
+            this.$store.state.token = ''
           })
           .catch(() => {
             console.log("取消");
           });
-       
       }
     },
   },
